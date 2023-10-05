@@ -21,6 +21,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 80)]
+    private ?string $firstName = null;
+
+    #[ORM\Column(length: 80, nullable: true)]
+    private ?string $secondName = null;
+
+    #[ORM\Column(length: 80)]
+    private ?string $lastName = null;
+
+    #[ORM\Column]
+    private array $locality = [];
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -89,6 +101,70 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string|null $firstName
+     */
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSecondName(): ?string
+    {
+        return $this->secondName;
+    }
+
+    /**
+     * @param string|null $secondName
+     */
+    public function setSecondName(?string $secondName): void
+    {
+        $this->secondName = $secondName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string|null $lastName
+     */
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLocality(): array
+    {
+        return $this->locality;
+    }
+
+    /**
+     * @param array $locality
+     */
+    public function setLocality(array $locality): void
+    {
+        $this->locality = $locality;
     }
 
     /**
