@@ -35,8 +35,8 @@ class RegistrationController extends AbstractController
         $user->setLastName($request->lastName);
         $user->setLocality($request->locality);
 
-        if($repository->findOneByEmail($user->getEmail()) != null){
-            return new JsonResponse(['message' => 'User With This Email Already Exists'],302);
+        if($repository->findOneBy(['email' => $request->email])){
+                return new JsonResponse(['message' => 'User With This Email Already Exists'], 302);
         }
 
         $entityManager->persist($user);
